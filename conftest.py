@@ -19,9 +19,10 @@ def chromedriver_name_mail_pass_fields():
     chrome_driver = _chrome_driver()
     chrome_driver.get("https://stellarburgers.nomoreparties.site/register")
     name_field, mail_field, pass_field = chrome_driver.find_elements(By.XPATH,
-                                                                          "//input[@class='text input__textfield "
-                                                                          "text_type_main-default']")
+                                                                     "//input[@class='text input__textfield "
+                                                                     "text_type_main-default']")
     return chrome_driver, name_field, mail_field, pass_field
+
 
 @pytest.fixture
 def chromedriver_logged_in():
@@ -43,3 +44,13 @@ def chromedriver_logged_in():
         expected_conditions.url_to_be('https://stellarburgers.nomoreparties.site/'))
 
     return chrome_driver
+
+
+@pytest.fixture
+def chromedriver_bulka_sauce_nachinka():
+    chrome_driver = _chrome_driver()
+    chrome_driver.get('https://stellarburgers.nomoreparties.site/')
+    bulka, sauce, nachinka = chrome_driver.find_elements(By.XPATH,
+                                                         "//div[contains(@style,'display: flex')]//div")
+
+    return chrome_driver, bulka, sauce, nachinka
